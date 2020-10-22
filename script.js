@@ -46,7 +46,6 @@ $(document).ready(function () {
         title: ""
     };
 
-    //var queryURL = "";
     var rapidKey = "a2b5d3b684mshabbf5412b1d3507p11b0a1jsnd2cd92016a40";
     var RAWGHost = "rawg-video-games-database.p.rapidapi.com";
     var queryURLRAWGPlatform = "https://rapidapi.p.rapidapi.com/platforms?";
@@ -64,24 +63,13 @@ $(document).ready(function () {
     var headerParamsRAWG = {
         "x-rapidapi-key": rapidKey,
         "x-rapidapi-host": RAWGHost
-        //"useQueryString": true
     }
 
     var headerParamsGenres = {
         "x-rapidapi-key": rapidKey,
         "x-rapidapi-host": RAWGHost
-        //"useQueryString": true
     }
 
-
-    //getListOfGames(4, 4);
-    // temp();
-    // async function temp ()
-    // {
-    //     var x = await getListOfGames(4, 4);
-    //     var debug = 0;
-    //     getChickenCoopInfo();
-    // }
     getListOfGames(4, 4);
     function getListOfGames(genres, platforms) {
         var geturl = buildGamesURL(genres, platforms);
@@ -192,7 +180,6 @@ $(document).ready(function () {
         var item = response.result;
 
         if (item !== null) {
-            //var item = result[i];
             var gotdata = Object.create(chickenCoopDataObject);
             var itemgames = findGame(item.title);
 
