@@ -10,10 +10,14 @@
 
 $(document).ready(function () {
 
+    var SAVE_INFO_KEY = "save_info_games";
     var listOfPlatforms = [];
     var listOfGenres = [];
     var listOfGames = [];
     var listOfChickens = []; // this is the one that will display the data
+    var selectedGenre = false;
+    var selectedPlatform = false;
+    var selectedRating_Top = false;
 
     var platformObject = {
         id: 0,
@@ -54,7 +58,6 @@ $(document).ready(function () {
     var queryURLRAWGGenre = "https://rapidapi.p.rapidapi.com/genres?";
     var chickenCoopURL = "https://rapidapi.p.rapidapi.com/games/";
 
-
     var headerParams = {
         "x-rapidapi-key": rapidKey,
         "x-rapidapi-host": "chicken-coop.p.rapidapi.com"
@@ -70,9 +73,70 @@ $(document).ready(function () {
         "x-rapidapi-host": RAWGHost
     }
 
-    getListOfGames(4, 4);
-    function getListOfGames(genres, platforms) {
-        var geturl = buildGamesURL(genres, platforms);
+    function displayToScreen()
+    {
+        // get references to screen controls
+        //var controlGenre = $("#genre");
+        //var controlPlatform = $("#platform");
+        //var controlratingTop = $("#ratingTop");
+
+        // rating_top is just integers from 0 to 5.
+        // displayRatingTopToScreen
+        // displayGenreToScreen
+        // displayPlatformToScreen
+    }
+
+    function displayPlatformToScreen()
+    {
+
+    }
+
+    function displayGenreToScreen()
+    {
+
+    }
+
+    // displayToScreen Rating_top
+    function displayRatingTopToScreen()
+    {
+        //var controlGenre = $("#genre");
+        for (var i = 0; i < 6; i++)
+        {
+        }
+    }
+
+    function getLocalStorage()
+    {
+        var getlocalstorage = JSON.parse(localStorage.getItem(SAVE_INFO_KEY));
+
+        if (getlocalstorage === null)
+        {
+            getlocalstorage = Object.create(chickenCoopDataObject);
+        }
+
+        return getlocalstorage;
+    }
+
+    // call this to 
+    function searchButtonClicked(event)
+    {
+        event.preventDefault();
+        var getlocalstorage = JSON.parse(localStorage.getItem(SAVE_INFO_KEY));
+
+        if (getlocalstorage === null)
+        {
+            getlocalstorage = Object.create(chickenCoopDataObject);
+        }
+
+        // gather inputs
+        // call getListOfGames with parameters
+        // save data to local storage
+        localStorage.setItem(SAVE_INFO_KEY, JSON.stringify(getlocalstorage));
+    }
+
+    getListOfGames(4, 4, 2);
+    function getListOfGames(genres, platforms, top_rating) {
+        var geturl = buildGamesURL(genres, platforms, top_rating);
 
         $.ajax({
             url: geturl,
@@ -82,7 +146,6 @@ $(document).ready(function () {
         }).then(calledGetGames)
             .then(getChickenCoopInfo);
     }
-
 
     function getChickenCoopInfo() {
         for (var i = 0; i < listOfGames.length; i++) {
@@ -105,8 +168,23 @@ $(document).ready(function () {
         }
     }
 
-    function buildGamesURL(genres, platforms) {
-        return queryGamesRAWG + "&genres=" + genres + "&platforms=" + platforms;
+    function buildGamesURL(genres, platforms, rating_top) {
+
+        var url = queryGamesRAWG;
+        if (selectedGenre)
+        {
+            url += "&genres=" + genres;
+        }
+        if (selectedPlatform)
+        {
+            url += "&platforms=" + platforms;
+        }
+        if (selectedRating_Top)
+        {
+            url += "&rating_top=" + rating_top;
+        }
+
+        return url;
     }
 
     //getListOfPlatforms(queryURLRAWGPlatform);
@@ -166,6 +244,7 @@ $(document).ready(function () {
         return queryURL;
     }
 
+    // call the ChickenCoop API
     function CallChickenCoop(nameOfTheVideoGame) {
         var queryURL = buildURL(nameOfTheVideoGame);
         $.ajax({
@@ -175,6 +254,7 @@ $(document).ready(function () {
         }).then(calledCC);
     }
 
+    // the "then" of having called the ChickenCoop API
     function calledCC(response) {
         var debug = 0;
         var item = response.result;
@@ -197,6 +277,7 @@ $(document).ready(function () {
         }
     }
 
+    // this bridges the gap between RAWG and ChickenCoop: search for the name of the game
     function findGame(chickenTitle) {
         var game = null;
         for (var i = 0; i < listOfGames.length; i++) {
@@ -209,4 +290,7 @@ $(document).ready(function () {
 
         return game;
     }
+
+
+   // $("#searchButton").on("click", searchButtonClicked); // magnifying glass
 });
