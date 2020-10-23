@@ -130,6 +130,8 @@ $(document).ready(function () {
     // call this to get list of recommendations
     function searchButtonClicked(event) {
         event.preventDefault();
+        var getul = $("#resultsList");
+        getul.empty();
         var getlocalstorage = JSON.parse(localStorage.getItem(SAVE_INFO_KEY));
 
         if (getlocalstorage === null) {
