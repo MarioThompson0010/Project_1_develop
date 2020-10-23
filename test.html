@@ -1,12 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+
+
 </head>
-<body>
+
+<body class="container">
+    <div class="columns">
+
+        <!-- <form> -->
+        <div class="column">
+            <form>
+                
+                
+                
+                <label for="searcher">Enter Search term</label>
+
+                <input id="searchid" style="max-width: 200px" name="searcher">
+                <!--  -->
+            </form>
+        </div>
+        <div class="column">
+            <form>
+                <label for="genre">Choose a genre:</label>
+                <select name="genre" id="genreid">
+                    <option value="blank">Select Genre</option>
+                </select>
+            </form>
+        </div>
+        <div class="column">
+            <form>
+                <label for="platformer">
+                    Choose a platform
+                </label>
+                <select name="platformer" id="platformid">
+                    <option value="volvo">Select Platform</option>
+                </select>
+            </form>
+
+            <button id="searchNow">
+                Search Now
+            </button>
+        </div>
+    </div>
     <script src="./script.js"></script>
 </body>
+
 </html>
