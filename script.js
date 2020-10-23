@@ -17,7 +17,7 @@ $(document).ready(function () {
     var listOfChickens = []; // this is the one that will display the data
     var selectedGenre = false;
     var selectedPlatform = false;
-    var selectedRating_Top = false;
+    var selectedSearch = false;
 
     var platformObject = {
         id: 0,
@@ -73,70 +73,93 @@ $(document).ready(function () {
         "x-rapidapi-host": RAWGHost
     }
 
-    function displayToScreen()
-    {
-        // get references to screen controls
-        //var controlGenre = $("#genre");
-        //var controlPlatform = $("#platform");
-        //var controlratingTop = $("#ratingTop");
+    // function displayToScreen() {
+    //     // get references to screen controls
+    //     var controlGenre = $("#genreid");
+    //     var controlPlatform = $("#platformid");
+    //     var controlratingTop = $("#searchid");
+    // }
 
-        // rating_top is just integers from 0 to 5.
-        // displayRatingTopToScreen
-        // displayGenreToScreen
-        // displayPlatformToScreen
+    // display platform to screen
+    function displayPlatformToScreen() {
+
+        var controlPlatform = $("#platformid");
+
+        for (var i = 0; i < listOfPlatforms.length; i++) {
+            var option = $("<option>");
+            option.text(listOfPlatforms[i].name);
+            option.val(listOfPlatforms[i].name);
+            option.attr("data-id", listOfPlatforms[i].id);
+            option.appendTo(controlPlatform);
+        }
+
     }
 
-    function displayPlatformToScreen()
-    {
+    // display to screen
+    function displayGenreToScreen() {
 
-    }
+        var controlGenre = $("#genreid");
 
-    function displayGenreToScreen()
-    {
-
-    }
-
-    // displayToScreen Rating_top
-    function displayRatingTopToScreen()
-    {
-        //var controlGenre = $("#genre");
-        for (var i = 0; i < 6; i++)
-        {
+        for (var i = 0; i < listOfGenres.length; i++) {
+            var option = $("<option>");
+            option.text(listOfGenres[i].name);
+            option.val(listOfGenres[i].name);
+            option.attr("data-id", listOfGenres[i].id);
+            option.appendTo(controlGenre);
         }
     }
 
-    function getLocalStorage()
-    {
+    // displayToScreen 
+    function displaySearch() {
+        var controlSearch = $("#searchid");
+    }
+
+    function getLocalStorage() {
         var getlocalstorage = JSON.parse(localStorage.getItem(SAVE_INFO_KEY));
 
-        if (getlocalstorage === null)
-        {
+        if (getlocalstorage === null) {
             getlocalstorage = Object.create(chickenCoopDataObject);
         }
 
         return getlocalstorage;
     }
 
-    // call this to 
-    function searchButtonClicked(event)
-    {
+    // call this to get list of recommendations
+    function searchButtonClicked(event) {
         event.preventDefault();
         var getlocalstorage = JSON.parse(localStorage.getItem(SAVE_INFO_KEY));
 
-        if (getlocalstorage === null)
-        {
+        if (getlocalstorage === null) {
             getlocalstorage = Object.create(chickenCoopDataObject);
         }
 
         // gather inputs
-        // call getListOfGames with parameters
+        var searchGuy = $("#searchid").val().trim();
+        var genreGuy = $("#genreid :selected").attr("data-id");
+        var platformGuy = $("#platformid :selected").attr("data-id");
+
+        selectedSearch = false;
+        selectedPlatform = false;
+        selectedGenre = false;
+
+        if (searchGuy !== "") {
+            selectedSearch = true;
+        }
+        if (genreGuy !== undefined) {
+            selectedGenre = true;
+        }
+        if (platformGuy !== undefined) {
+            selectedPlatform = true;
+        }
+
+        getListOfGames(genreGuy, platformGuy, searchGuy);
         // save data to local storage
         localStorage.setItem(SAVE_INFO_KEY, JSON.stringify(getlocalstorage));
     }
 
-    getListOfGames(4, 4, 2);
-    function getListOfGames(genres, platforms, top_rating) {
-        var geturl = buildGamesURL(genres, platforms, top_rating);
+    // call API to get games
+    function getListOfGames(genres, platforms, search) {
+        var geturl = buildGamesURL(genres, platforms, search);
 
         $.ajax({
             url: geturl,
@@ -147,6 +170,7 @@ $(document).ready(function () {
             .then(getChickenCoopInfo);
     }
 
+    // the 2nd then of getGames from RAWG 
     function getChickenCoopInfo() {
         for (var i = 0; i < listOfGames.length; i++) {
             var item = listOfGames[i];
@@ -155,39 +179,41 @@ $(document).ready(function () {
         }
     }
 
+    // the then of having called RAWG games
     function calledGetGames(response) {
         var result = response.results;
+        listOfGames = [];
         for (var i = 0; i < result.length; i++) {
             var item = result[i];
             var gamesObject1 = Object.create(gamesObject);
             gamesObject1.id = item.id;
             gamesObject1.name = item.name;
-            gamesObject1.pic = item.clip.clip;
+            if (item.clip !== null) {
+                gamesObject1.pic = item.clip.clip;
+            }
             gamesObject1.index = i; // put into chickenCoop when ready
             listOfGames.push(gamesObject1);
         }
     }
 
-    function buildGamesURL(genres, platforms, rating_top) {
+    // RAWG games url
+    function buildGamesURL(genres, platforms, search) {
 
         var url = queryGamesRAWG;
-        if (selectedGenre)
-        {
+        if (selectedGenre) {
             url += "&genres=" + genres;
         }
-        if (selectedPlatform)
-        {
+        if (selectedPlatform) {
             url += "&platforms=" + platforms;
         }
-        if (selectedRating_Top)
-        {
-            url += "&rating_top=" + rating_top;
+        if (selectedSearch) {
+            url += "&search=" + search;
         }
 
         return url;
     }
 
-    //getListOfPlatforms(queryURLRAWGPlatform);
+    // call API that gets platforms
     function getListOfPlatforms(platformurl) {
         $.ajax({
             url: platformurl,
@@ -196,6 +222,7 @@ $(document).ready(function () {
         }).then(calledGetPlatforms);
     }
 
+    // the then of getPlatforms
     function calledGetPlatforms(response) {
         var result = response.results;
 
@@ -211,9 +238,14 @@ $(document).ready(function () {
         if (response.next !== null) {
             getListOfPlatforms(queryURLRAWGPlatform + "page=2");
         }
+
+        // have to do this due to asynchronous programming of js
+        if (response.next === null) {
+            displayPlatformToScreen();
+        }
     }
 
-    //getListOfGenres(queryURLRAWGGenre);
+    // get genres from RAWG
     function getListOfGenres(genreurl) {
         $.ajax({
             url: genreurl,
@@ -222,6 +254,7 @@ $(document).ready(function () {
         }).then(calledGetGenres);
     }
 
+    // the then of getGenres
     function calledGetGenres(response) {
         var result = response.results;
 
@@ -233,10 +266,11 @@ $(document).ready(function () {
 
             listOfGenres.push(genreObject1);
         }
+
+        displayGenreToScreen();
     }
 
-    //buildURL();
-    //CallChickenCoop();
+    // build chickenCoop url
     function buildURL(nameOfTheVideoGame) {
         var sampleVideo = "Rise of the Tomb Raider";
         var encoded = encodeURIComponent(/*sampleVideo*/ nameOfTheVideoGame);
@@ -291,6 +325,11 @@ $(document).ready(function () {
         return game;
     }
 
+    function searchUsingCriteria() {
 
-   // $("#searchButton").on("click", searchButtonClicked); // magnifying glass
+    }
+
+    $("#searchNow").on("click", searchButtonClicked);
+    getListOfPlatforms(queryURLRAWGPlatform);
+    getListOfGenres(queryURLRAWGGenre);
 });
