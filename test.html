@@ -7,16 +7,20 @@
     <title>Document</title>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
-
+    <link rel="stylesheet" href="./assets/style.css">
 
 </head>
 
 <body class="container">
     <div class="columns">
         <div class="column">
-            <form>
+            <form id="formSearch">
                 <label for="searcher">Enter Search term</label>
-                <input id="searchid" style="max-width: 200px" name="searcher">
+                <input id="searchid" style="max-width: 200px;" name="searcher">
+                <div class="columns">
+                    <div class="column is-full" id="errorDiv">
+                    </div>
+                </div>
             </form>
         </div>
         <div class="column">
@@ -37,7 +41,7 @@
                 </select>
             </form>
             <div class="column is-offset-5">
-                <button id="searchNow">
+                <button id="searchNow" type="submit">
                     Search Now
                 </button>
             </div>
@@ -51,9 +55,10 @@
 
         </div>
         <div class="column is-4">
-            <ul id="resultsList" class="is-offset-6">
-
-            </ul>
+            <form>
+                <ul id="resultsList" class="is-offset-6">
+                </ul>
+            </form>
         </div>
     </div>
     <script src="./script.js"></script>
