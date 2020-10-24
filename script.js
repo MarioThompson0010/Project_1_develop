@@ -11,7 +11,6 @@
 $(document).ready(function () {
 
     var PAGE_SIZE_STRING = "5"; // number of suggestions for user
-    var MaxPagesProcessed =  parseInt(PAGE_SIZE_STRING);
     var PagesProcessed = 0;
     var SAVE_INFO_KEY = "save_info_games";
     var listOfPlatforms = [];
@@ -76,13 +75,6 @@ $(document).ready(function () {
         "x-rapidapi-host": RAWGHost
     }
 
-    // function displayToScreen() {
-    //     // get references to screen controls
-    //     var controlGenre = $("#genreid");
-    //     var controlPlatform = $("#platformid");
-    //     var controlratingTop = $("#searchid");
-    // }
-
     // display platform to screen
     function displayPlatformToScreen() {
 
@@ -112,12 +104,7 @@ $(document).ready(function () {
         }
     }
 
-    // displayToScreen 
-    function displaySearch() {
-        var controlSearch = $("#searchid");
-    }
-
-    function getLocalStorage() {
+    function getLocalStorageFunc() {
         var getlocalstorage = JSON.parse(localStorage.getItem(SAVE_INFO_KEY));
 
         if (getlocalstorage === null) {
@@ -130,16 +117,19 @@ $(document).ready(function () {
     // call this to get list of recommendations
     function searchButtonClicked(event) {
         event.preventDefault();
+        PagesProcessed = 0;
+
         var getul = $("#resultsList");
         getul.empty();
-        var getlocalstorage = JSON.parse(localStorage.getItem(SAVE_INFO_KEY));
-
-        if (getlocalstorage === null) {
-            getlocalstorage = Object.create(chickenCoopDataObject);
-        }
+        var getlocalstorage = getLocalStorageFunc(); // JSON.parse(localStorage.getItem(SAVE_INFO_KEY));
 
         // gather inputs
         var searchGuy = $("#searchid").val().trim();
+        var searchControl = $("#searchid");
+        searchControl.removeClass("errorSign");
+        var errordiv = $("#errorDiv");
+        errordiv.text("");
+
         var genreGuy = $("#genreid :selected").attr("data-id");
         var platformGuy = $("#platformid :selected").attr("data-id");
 
@@ -157,9 +147,17 @@ $(document).ready(function () {
             selectedPlatform = true;
         }
 
+        if (!selectedSearch && !selectedGenre && !selectedPlatform) {
+            searchControl.addClass("errorSign");
+            
+            errordiv.text("Enter at least one search parameter");
+
+            return;
+        }
+
         getListOfGames(genreGuy, platformGuy, searchGuy);
         // save data to local storage
-        
+
     }
 
     // call API to get games
@@ -169,7 +167,6 @@ $(document).ready(function () {
         $.ajax({
             url: geturl,
             method: "GET",
-            async: false,
             headers: headerParamsRAWG
 
         }).then(calledGetGames)
@@ -227,9 +224,10 @@ $(document).ready(function () {
             populateUsingCriteria(gotdata);
         }
 
-        if (PagesProcessed >= MaxPagesProcessed)
-        {
+        if (PagesProcessed >= listOfGames.length) {
             saveLocalStorage();
+            var searchid = $("#searchid");
+            searchid.val("");
         }
     }
 
@@ -351,12 +349,27 @@ $(document).ready(function () {
 
         var getul = $("#resultsList");
         var makeli = $("<li>");
-        var name = gotdata.games.name;
+        var video = $("<video>");
+
+        var name = "";
+        var pic = "";
+        if (gotdata.games !== null) {
+            name = gotdata.games.name;
+            pic = gotdata.games.pic;
+        }
+
         makeli.text(name);
+        makeli.addClass("mt-2");
         makeli.appendTo(getul);
+
+        if (pic !== "") {
+            video.attr("src", pic);
+            video.attr("width", 200);
+            video.attr("height", 200);
+            video.attr("controls", "controls");
+            video.appendTo(getul);
+        }
     }
-
-
 
     $("#searchNow").on("click", searchButtonClicked);
     getListOfPlatforms(queryURLRAWGPlatform);
