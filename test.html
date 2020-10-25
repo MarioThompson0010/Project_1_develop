@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+    <link rel="stylesheet" href="./assets/style.css">
+
+</head>
+
+<body class="container">
+    <form>
+        <div class="columns">
+            <div class="column">
+                <label for="searcher">Enter Search term</label>
+                <input id="searchid" style="max-width: 200px;" name="searcher">
+                <div class="columns">
+                    <div class="column is-full" id="errorDiv">
+                    </div>
+                </div>
+            </div>
+            <div class="column">
+                <label for="genre">Choose a genre:</label>
+                <select name="genre" id="genreid">
+                    <option value="blank">Select Genre</option>
+                </select>
+            </div>
+            <div class="column">
+                <label for="platformer">
+                    Choose a platform
+                </label>
+                <select name="platformer" id="platformid">
+                    <option value="volvo">Select Platform</option>
+                </select>
+
+                <div class="column is-offset-5">
+                    <button id="searchNow" type="submit">
+                        Search Now
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
+    <div class="columns">
+        <div class="column is-2">
+            <form>
+                <label>Recommendations:</label>
+            </form>
+
+        </div>
+        <div class="column is-4">
+            <form>
+                <ul id="resultsList" class="is-offset-6">
+                </ul>
+            </form>
+        </div>
+    </div>
+    <script src="./script.js"></script>
+</body>
+
+</html>

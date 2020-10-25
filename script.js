@@ -15,7 +15,11 @@ $(document).ready(function () {
     var SAVE_INFO_KEY = "save_info_games";
     var listOfPlatforms = [];
     var listOfGenres = [];
+<<<<<<< HEAD
     var listOfGames = [];
+=======
+    var listOfGames = []; // call RAWG to get this list
+>>>>>>> c8e05590c1ec324fc5a9b717fd4f5629e5e00324
     var listOfChickens = []; // this is the one that will display the data
     var selectedGenre = false;
     var selectedPlatform = false;
@@ -37,7 +41,12 @@ $(document).ready(function () {
         id: 0,
         name: "",
         pic: "",
+<<<<<<< HEAD
         index: 0
+=======
+        index: 0,
+        released: ""
+>>>>>>> c8e05590c1ec324fc5a9b717fd4f5629e5e00324
     };
 
     var chickenCoopDataObject = {
@@ -240,6 +249,10 @@ $(document).ready(function () {
             var gamesObject1 = Object.create(gamesObject);
             gamesObject1.id = item.id;
             gamesObject1.name = item.name;
+<<<<<<< HEAD
+=======
+            gamesObject1.released = item.released;
+>>>>>>> c8e05590c1ec324fc5a9b717fd4f5629e5e00324
             if (item.clip !== null) {
                 gamesObject1.pic = item.clip.clip;
             }
