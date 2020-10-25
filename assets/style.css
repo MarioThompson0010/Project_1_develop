@@ -1,0 +1,204 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300&display=swap');
+
+*{
+    padding: 0;
+    margin:0;
+    font-family: 'Montserrat', sans-serif;
+}
+header{
+    width: 100%;
+    min-height: 200px;
+    background-color: #0a796a;
+    color: #fff;
+}
+.container{
+    width: 56%;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+}
+.top{
+    width: 100%;
+}
+.top .logo{
+    font-weight: 100;
+    float: left;
+    left:0;
+    font-size: 2.2em;
+    text-transform: uppercase;
+    border-top: 4px  solid  #798288;
+    cursor: pointer;
+    padding-top:30px;
+}
+.top .sideMenu{
+    float: right; 
+    padding-top: 66px;
+}
+.top .sideMenu .caption{
+    font-size: 0.9em;
+    font-weight: 300;
+    color:  #fff;
+    opacity: 0.4;
+    float: right;
+    margin-right: 0;
+}
+.top ul{
+    padding-top: 25px;
+
+}
+ul li{
+    list-style: none;
+    display: inline;
+}
+ul li a{
+    text-decoration: none;
+    color: #fff;
+    font-size: 0.7em;
+    text-transform: uppercase;
+    font-weight: 300;
+    margin-left: 10px;
+    position: relative;
+}
+.top ul li a::after{
+    content: '';
+    position: absolute;
+    width: 0;
+    left: 50%;
+    height: 1px;
+    bottom: -3px;
+    background-color:transparent;
+    transition: width .5s ease,
+    background-color .5s ease,
+    left .5s ease;
+}
+.top ul li a:hover::after{
+    width: 100%;
+    left: 0;
+    cursor: pointer;
+    background: #fff;
+}
+.line1{
+    font-size: 1.6em;
+    opacity: 0.4;
+    text-align: center;
+    width: 100%;
+    padding-top: 40px;
+}
+.line2{
+    font-size: 1.1rem;
+    text-align: center;
+    padding: 10px;
+    font-weight: 100;
+}
+.btn{
+    padding: 30px;
+}
+.btn button{
+    border: 1px solid #fff;
+    color: #fff;
+    background: transparent;
+    padding: 15px 20px;
+    border-radius: 5px;
+    text-transform: uppercase;
+    outline: none;
+    background-position: center;
+    transition: background 0.8s;
+}
+.btn button:hover{
+    cursor: pointer;
+    background: #526f86 radial-gradient(circle, transparent 1%, #657b8d 1%) center/15000%;
+}
+.btn button:active{
+    background-color: #526f86;
+background-size: 100%;
+transition: background 0s;
+}
+
+.section1{
+    width: 60%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+.card{
+    position: relative;
+    width: 230px;
+    box-sizing: border-box;
+    overflow: hidden;
+    margin: 15px;
+}
+.imgBox{
+    width: 100%;
+    height: 150px;
+    position: relative;
+    box-sizing: border-box;
+}
+.imgBox img{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 5px;
+}
+.card h4, .card h3{
+    text-transform: uppercase;
+    opacity: 0.6;
+    padding-bottom: 20px;
+    font-size: 0.7em;
+}
+.card h3{
+    font-size: 0.8em;
+    padding-top: 20px;
+}
+.card p{
+    font-size: 0.7em;
+}
+footer{
+    background-color:  #0a796a;
+    position: sticky;
+}
+.footer{
+    display: flex;
+    align-items: baseline;
+    width: 56%;
+    padding-bottom: 30px;
+    padding-top: 30px;
+    margin: 0 auto;
+    font-size: 0.8em;
+    position: relative;
+}
+.copright{
+    color: #fff;
+    opacity: 0.6;
+    float: left;
+}
+.footerNav {
+    position: absolute;
+    right: 0;  
+}
+
+@media screen and (max-width:800px){
+    .section1{
+        display: flex;
+        flex-wrap: wrap;
+    }
+.top .logo{
+    font-size:1.8em;
+}
+.line1{
+    font-size: 1.2em;
+}
+.line2{
+    font-size: 1em
+}
+.top .sideMenu{
+    padding-top:55px
+}
+}
