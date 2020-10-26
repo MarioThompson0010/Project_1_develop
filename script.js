@@ -27,7 +27,8 @@ $(document).ready(function () {
     var searchObject = {
         namesearched: "",
         platformsearched: "",
-        genresearched: ""
+        genresearched: "",
+        key : ""
     };
 
     var platformObject = {
@@ -46,12 +47,8 @@ $(document).ready(function () {
         id: 0,
         name: "",
         pic: "",
-<<<<<<< HEAD
-        index: 0
-=======
         index: 0,
         released: ""
->>>>>>> c8e05590c1ec324fc5a9b717fd4f5629e5e00324
     };
 
     var chickenCoopDataObject = {
@@ -128,6 +125,47 @@ $(document).ready(function () {
         return getlocalstorage;
     }
 
+    function PopulateLastSearches(gotlocal)
+    {
+        var recentul = $("#recentSearchedUL");
+
+        for (var i = 0; i < gotlocal.length; i++)
+        {
+            var item = gotlocal[i];
+            var button = $("<button>");
+            var key = item.key;
+            button.attr("data-key", key);
+            button.addClass("recentlySearchedClass");
+            var splitted = nameoCity.split(',');
+             button.text("Error");
+
+            if (splitted.length > 0)
+            {
+                if (splitted[0] !== "")
+                {
+                    button.text(splitted[0]);
+                }
+                else
+                {
+                    if (splitted.length > 2)
+                    {
+                        button.text(splitted[1] + " " + splitted[2]);
+                    }
+                }
+            }
+
+            button.appendTo(recentul);
+        }  
+    }
+
+    function searchRecentButton(event)
+    {
+        event.preventDefault();
+        var gotdata = $(this).attr("data-key");
+        var splitted = gotdata.split(',');
+        getListOfGames(splitted[0], splitted[1], splitted[2]);
+    }
+
     // call this to get list of recommendations
     function searchButtonClicked(event) {
         event.preventDefault();
@@ -135,7 +173,8 @@ $(document).ready(function () {
 
         var getul = $("#resultsList");
         getul.empty();
-        var getlocalstorage = getLocalStorageFunc(); // JSON.parse(localStorage.getItem(SAVE_INFO_KEY));
+        var getlocalstorage = getLocalStorageFunc(); 
+        PopulateLastSearches(getlocalstorage);
 
         // gather inputs
         var searchGuy = $("#searchid").val().trim();
@@ -196,9 +235,10 @@ $(document).ready(function () {
         var genreGuy = $("#genreid :selected").val(); 
         var platformGuy = $("#platformid :selected").val(); 
 
-        getobject.namesearched = searched.val();
+        getobject.namesearched = searched.val().trim();
         getobject.genresearched = genreGuy;
         getobject.platformsearched = platformGuy;
+        getobject.key = getobject.namesearched + "," + getobject.genresearched + "," + getobject.platformsearched;
 
         listOfSearchHistory.unshift(getobject);
 
@@ -407,6 +447,7 @@ $(document).ready(function () {
     }
 
     $("#searchNow").on("click", searchButtonClicked);
+    $(".recentlySearchedClass").on("click", searchRecentButton);
     getListOfPlatforms(queryURLRAWGPlatform);
     getListOfGenres(queryURLRAWGGenre);
 });
