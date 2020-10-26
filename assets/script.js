@@ -1,13 +1,4 @@
-// the following commented code does work. Use it as a model for Chicken Coop.
-// $.ajax({
-// url: "https://rapidapi.p.rapidapi.com/games/Rise%20of%20the%20Tomb%20Raider?",
-// method: "GET",
-// headers: {
-// "x-rapidapi-key": "a2b5d3b684mshabbf5412b1d3507p11b0a1jsnd2cd92016a40",
-// "x-rapidapi-host": "chicken-coop.p.rapidapi.com"
-// }
-// }).then(calledGuy);
-
+// 
 $(document).ready(function () {
 
     var PAGE_SIZE_STRING = "5"; // number of suggestions for user
@@ -20,7 +11,7 @@ $(document).ready(function () {
 
     var listOfSearchHistory = []; // display last three searches
 
-    var selectedGenre = false;
+    var selectedGenre = false; // 
     var selectedPlatform = false;
     var selectedSearch = false;
 
@@ -209,8 +200,6 @@ $(document).ready(function () {
         }
 
         getListOfGames(genreGuy, platformGuy, searchGuy);
-        // save data to local storage
-
     }
 
     // call API to get games
@@ -223,10 +212,10 @@ $(document).ready(function () {
             headers: headerParamsRAWG
 
         }).then(calledGetGames)
-            .then(getChickenCoopInfo); //.then(saveLocalStorage);
-        //.done();
+            .then(getChickenCoopInfo);
     }
 
+    // save to local storage
     function saveLocalStorage(response) {
 
         var getobjectArray = getLocalStorageFunc();
@@ -308,6 +297,7 @@ $(document).ready(function () {
             populateUsingCriteria(gotdata);
         }
 
+        // you're done popping off the stack. Do processing that goes after
         if (PagesProcessed >= listOfGames.length) {
             saveLocalStorage();
             PopulateLastSearches();
@@ -329,6 +319,7 @@ $(document).ready(function () {
             if (item.clip !== null) {
                 gamesObject1.pic = item.clip.clip;
             }
+            
             gamesObject1.index = i; // put into chickenCoop when ready
             listOfGames.push(gamesObject1);
         }
