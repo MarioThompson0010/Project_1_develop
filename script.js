@@ -15,15 +15,20 @@ $(document).ready(function () {
     var SAVE_INFO_KEY = "save_info_games";
     var listOfPlatforms = [];
     var listOfGenres = [];
-<<<<<<< HEAD
-    var listOfGames = [];
-=======
     var listOfGames = []; // call RAWG to get this list
->>>>>>> c8e05590c1ec324fc5a9b717fd4f5629e5e00324
     var listOfChickens = []; // this is the one that will display the data
+
+    var listOfSearchHistory = []; // display last three searches
+
     var selectedGenre = false;
     var selectedPlatform = false;
     var selectedSearch = false;
+
+    var searchObject = {
+        namesearched: "",
+        platformsearched: "",
+        genresearched: ""
+    };
 
     var platformObject = {
         id: 0,
@@ -117,7 +122,7 @@ $(document).ready(function () {
         var getlocalstorage = JSON.parse(localStorage.getItem(SAVE_INFO_KEY));
 
         if (getlocalstorage === null) {
-            getlocalstorage = Object.create(chickenCoopDataObject);
+            getlocalstorage = Object.create(listOfSearchHistory);
         }
 
         return getlocalstorage;
@@ -158,7 +163,7 @@ $(document).ready(function () {
 
         if (!selectedSearch && !selectedGenre && !selectedPlatform) {
             searchControl.addClass("errorSign");
-            
+
             errordiv.text("Enter at least one search parameter");
 
             return;
@@ -184,7 +189,24 @@ $(document).ready(function () {
     }
 
     function saveLocalStorage(response) {
-        localStorage.setItem(SAVE_INFO_KEY, JSON.stringify(listOfChickens));
+
+        var getobject = Object.create(searchObject);
+        var searched = $("#searchid");
+        
+        var genreGuy = $("#genreid :selected").val(); 
+        var platformGuy = $("#platformid :selected").val(); 
+
+        getobject.namesearched = searched.val();
+        getobject.genresearched = genreGuy;
+        getobject.platformsearched = platformGuy;
+
+        listOfSearchHistory.unshift(getobject);
+
+        if (listOfSearchHistory.length > 3) {
+            listOfSearchHistory.pop();
+        }
+
+        localStorage.setItem(SAVE_INFO_KEY, JSON.stringify(listOfSearchHistory));
     }
 
     // the 2nd then of getGames from RAWG 
