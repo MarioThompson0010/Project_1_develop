@@ -22,9 +22,6 @@ $(document).ready(function () {
     };
 
 
-
-
-
     var clickedSearchButton = false;
 
     var searchObject = {
@@ -225,7 +222,7 @@ $(document).ready(function () {
         clickedSearchButton = true;
         commonToSearch();
         
-        var getlocalstorage = getLocalStorageFunc();
+        //var getlocalstorage = getLocalStorageFunc();
 
 
         // gather inputs
@@ -505,7 +502,15 @@ $(document).ready(function () {
 
         if (gotdata.description !== null)
         {
-            description = gotdata.description;
+            description = gotdata.description; 
+            description = description.replace(/(&quot;)|(&hellip;  Expand)|(&amp;)/g, "");
+            //description = description.replace(/(&hellip;  Expand)/g, "");
+            //var lengthofdesc = description.length;
+            // var sublength = description.substring(lengthofdesc - "Expand".length, lengthofdesc);
+            // if (sublength.includes("Expand"))
+            // {
+            //     description.replace(lengthofdesc - "Expand".length, )
+            // }
         }
 
         if (gotdata.rating !== null)
