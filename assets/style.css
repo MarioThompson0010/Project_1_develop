@@ -184,6 +184,12 @@ footer{
     position: absolute;
     right: 0;  
 }
+.errorSign
+{
+  border: red;
+  border-width: 3px;
+  border-style: solid;
+} 
 
 @media screen and (max-width:800px){
     .section1{
