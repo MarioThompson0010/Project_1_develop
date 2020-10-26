@@ -11,14 +11,28 @@ $(document).ready(function () {
 
     var listOfSearchHistory = []; // display last three searches
 
-    var selectedGenre = false; // 
-    var selectedPlatform = false;
-    var selectedSearch = false;
+    var searchCriteriaSelect = {
+        genreval: "",
+        platval: "",
+        searchval: "",
+
+        selectedgenre: false, // 
+        selectedplatform: false,
+        selectedsearch: false
+    };
+
+
+
+
+
+    var clickedSearchButton = false;
 
     var searchObject = {
         namesearched: "",
         platformsearched: "",
+        platdescription: "",
         genresearched: "",
+        genredescription: "",
         key: ""
     };
 
@@ -130,6 +144,7 @@ $(document).ready(function () {
             if (key !== undefined && key !== "") {
                 button.attr("data-key", key);
                 button.addClass("recentlySearchedClass");
+                button.bind("click", searchRecentButton); // need this for looking up a city that was recently added
                 var splitted = key.split(',');
                 button.text("Error");
 
@@ -139,7 +154,7 @@ $(document).ready(function () {
                     }
                     else {
                         if (splitted.length > 2) {
-                            button.text(splitted[1] + " " + splitted[2]);
+                            button.text(gotlocal[i].genredescription + " " + gotlocal[i].platdescription);
                         }
                     }
                 }
@@ -150,22 +165,68 @@ $(document).ready(function () {
         }
     }
 
+    function commonToSearch()
+    {
+        var getul = $("#resultsList");
+        getul.empty();
+        PagesProcessed = 0;
+    }
+
     function searchRecentButton(event) {
         event.preventDefault();
+        commonToSearch();
         var gotdata = $(this).attr("data-key");
         var splitted = gotdata.split(',');
-        getListOfGames(splitted[0], splitted[1], splitted[2]);
+        // get list of searches
+
+        // selectedsearch = false;
+        // selectedplatform = false;
+        // selectedgenre = false;
+
+        var searchCriteria = Object.create(searchCriteriaSelect);
+
+        searchCriteria.searchval = splitted[0];
+        searchCriteria.genreval = splitted[1];
+        searchCriteria.platval = splitted[2];
+
+        buildGamesURLHelper(searchCriteria);
+
+
+        // if (searchGuy !== "") {
+        // selectedsearch = true;
+        // }
+        // if (genreGuy !== undefined) {
+        // selectedgenre = true;
+        // }
+        // if (platformGuy !== undefined) {
+        // selectedplatform = true;
+        // }
+
+        getListOfGames(splitted[0], splitted[1], splitted[2],
+            searchCriteria.selectedsearch, searchCriteria.selectedgenre, searchCriteria.selectedplatform);
+    }
+
+    function buildGamesURLHelper(searchCriteria) {
+
+        if (searchCriteria.searchval !== "") {
+            searchCriteria.selectedsearch = true;
+        }
+        if (searchCriteria.genreval !== "undefined") {
+            searchCriteria.selectedgenre = true;
+        }
+        if (searchCriteria.platval !== "undefined") {
+            searchCriteria.selectedplatform = true;
+        }
     }
 
     // call this to get list of recommendations
     function searchButtonClicked(event) {
         event.preventDefault();
-        PagesProcessed = 0;
-
-        var getul = $("#resultsList");
-        getul.empty();
-        var getlocalstorage = getLocalStorageFunc();
+        clickedSearchButton = true;
+        commonToSearch();
         
+        var getlocalstorage = getLocalStorageFunc();
+
 
         // gather inputs
         var searchGuy = $("#searchid").val().trim();
@@ -177,21 +238,21 @@ $(document).ready(function () {
         var genreGuy = $("#genreid :selected").attr("data-id");
         var platformGuy = $("#platformid :selected").attr("data-id");
 
-        selectedSearch = false;
-        selectedPlatform = false;
-        selectedGenre = false;
+        selectedsearch = false;
+        selectedplatform = false;
+        selectedgenre = false;
 
         if (searchGuy !== "") {
-            selectedSearch = true;
+            selectedsearch = true;
         }
         if (genreGuy !== undefined) {
-            selectedGenre = true;
+            selectedgenre = true;
         }
         if (platformGuy !== undefined) {
-            selectedPlatform = true;
+            selectedplatform = true;
         }
 
-        if (!selectedSearch && !selectedGenre && !selectedPlatform) {
+        if (!selectedsearch && !selectedgenre && !selectedplatform) {
             searchControl.addClass("errorSign");
 
             errordiv.text("Enter at least one search parameter");
@@ -199,12 +260,12 @@ $(document).ready(function () {
             return;
         }
 
-        getListOfGames(genreGuy, platformGuy, searchGuy);
+        getListOfGames(searchGuy, genreGuy, platformGuy, selectedsearch, selectedgenre, selectedplatform);
     }
 
     // call API to get games
-    function getListOfGames(genres, platforms, search) {
-        var geturl = buildGamesURL(genres, platforms, search);
+    function getListOfGames(search, genres, platforms, selectedsearch, selectedgenre, selectedplatform) {
+        var geturl = buildGamesURL(search, genres, platforms, selectedsearch, selectedgenre, selectedplatform);
 
         $.ajax({
             url: geturl,
@@ -223,22 +284,25 @@ $(document).ready(function () {
         var getobject = Object.create(searchObject);
         var searched = $("#searchid");
 
-        var genreGuy = $("#genreid :selected").val();
-        var platformGuy = $("#platformid :selected").val();
+        var genreGuy = $("#genreid :selected"); //.val();
+        var platformGuy = $("#platformid :selected"); //.val();
+
+        var datag = genreGuy.attr("data-id");
+        var datap = platformGuy.attr("data-id");
 
         getobject.namesearched = searched.val().trim();
-        getobject.genresearched = genreGuy;
-        getobject.platformsearched = platformGuy;
+        getobject.genresearched = datag;
+        getobject.genredescription = $("#genreid :selected").val(); 
+        getobject.platformsearched = datap;
+        getobject.platdescription = $("#platformid :selected").val(); 
 
-        if (getobject.genresearched === "noneSelected")
-        {
-            getobject.genresearched = "";
-        }
+        // if (getobject.genresearched === "noneSelected") {
+        //     getobject.genresearched = undefined;
+        // }
 
-        if (getobject.platformsearched === "noneSelected")
-        {
-            getobject.platformsearched = "";
-        }
+        // if (getobject.platformsearched === "noneSelected") {
+        //     getobject.platformsearched = undefined;
+        // }
 
         getobject.key = getobject.namesearched + "," + getobject.genresearched + "," + getobject.platformsearched;
 
@@ -299,8 +363,11 @@ $(document).ready(function () {
 
         // you're done popping off the stack. Do processing that goes after
         if (PagesProcessed >= listOfGames.length) {
-            saveLocalStorage();
-            PopulateLastSearches();
+            if (clickedSearchButton) {
+                saveLocalStorage();
+                PopulateLastSearches();
+                clickedSearchButton = false;
+            }
             var searchid = $("#searchid");
             searchid.val("");
         }
@@ -319,24 +386,27 @@ $(document).ready(function () {
             if (item.clip !== null) {
                 gamesObject1.pic = item.clip.clip;
             }
-            
+
             gamesObject1.index = i; // put into chickenCoop when ready
             listOfGames.push(gamesObject1);
         }
     }
 
     // RAWG games url
-    function buildGamesURL(genres, platforms, search) {
+    function buildGamesURL(search, genres, platforms, selectedsearch, selectedgenre, selectedplatform) {
 
         var url = queryGamesRAWG;
-        if (selectedGenre) {
+
+        if (selectedsearch) {
+            url += "&search=" + search;
+        }
+
+        if (selectedgenre) {
             url += "&genres=" + genres;
         }
-        if (selectedPlatform) {
+
+        if (selectedplatform) {
             url += "&platforms=" + platforms;
-        }
-        if (selectedSearch) {
-            url += "&search=" + search;
         }
 
         return url;
@@ -436,7 +506,7 @@ $(document).ready(function () {
         }
 
         makeli.text(name);
-        makeli.addClass("mt-2");
+        //makeli.attr("style", "margin-top: 2px;");
         makeli.appendTo(getul);
 
         if (pic !== "") {
@@ -449,7 +519,7 @@ $(document).ready(function () {
     }
 
     $("#searchNow").on("click", searchButtonClicked);
-    $(".recentlySearchedClass").on("click", searchRecentButton);
+    //$(".recentlySearchedClass").on("click", searchRecentButton);
     getListOfPlatforms(queryURLRAWGPlatform);
     getListOfGenres(queryURLRAWGGenre);
     PopulateLastSearches();
