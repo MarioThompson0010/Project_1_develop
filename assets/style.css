@@ -13,7 +13,7 @@ header{
     color: #fff;
 }
 .container{
-    width: 56%;
+    width: 90%;
     justify-content: center;
     align-items: center;
     display: flex;
@@ -33,11 +33,11 @@ header{
     cursor: pointer;
     padding-top:30px;
 }
-.top .sideMenu{
+.top .columns{
     float: right; 
     padding-top: 66px;
 }
-.top .sideMenu .caption{
+.top .columns .caption{
     font-size: 0.9em;
     font-weight: 300;
     color:  #fff;
@@ -45,15 +45,14 @@ header{
     float: right;
     margin-right: 0;
 }
-.top ul{
+.columns{
     padding-top: 25px;
 
 }
-ul li{
-    list-style: none;
+.column{
     display: inline;
 }
-ul li a{
+.column{
     text-decoration: none;
     color: #fff;
     font-size: 0.7em;
@@ -62,7 +61,7 @@ ul li a{
     margin-left: 10px;
     position: relative;
 }
-.top ul li a::after{
+.column::after{
     content: '';
     position: absolute;
     width: 0;
@@ -74,7 +73,7 @@ ul li a{
     background-color .5s ease,
     left .5s ease;
 }
-.top ul li a:hover::after{
+.column:hover::after{
     width: 100%;
     left: 0;
     cursor: pointer;
