@@ -296,14 +296,6 @@ $(document).ready(function () {
         getobject.platformsearched = datap;
         getobject.platdescription = $("#platformid :selected").val(); 
 
-        // if (getobject.genresearched === "noneSelected") {
-        //     getobject.genresearched = undefined;
-        // }
-
-        // if (getobject.platformsearched === "noneSelected") {
-        //     getobject.platformsearched = undefined;
-        // }
-
         getobject.key = getobject.namesearched + "," + getobject.genresearched + "," + getobject.platformsearched;
 
         getobjectArray.unshift(getobject);
@@ -498,16 +490,37 @@ $(document).ready(function () {
         var makeli = $("<li>");
         var video = $("<video>");
 
+        var descriptionli = $("<li>");
+        var ratingli = $("<li>");
+
         var name = "";
         var pic = "";
+        var description = "";
+        var rating = "";
+
         if (gotdata.games !== null) {
             name = gotdata.games.name;
             pic = gotdata.games.pic;
         }
 
-        makeli.text(name);
-        //makeli.attr("style", "margin-top: 2px;");
+        if (gotdata.description !== null)
+        {
+            description = gotdata.description;
+        }
+
+        if (gotdata.rating !== null)
+        {
+            rating = gotdata.rating;
+        }
+
+        makeli.text("Title: " + name);
+        descriptionli.text("Description: " + description);
+        ratingli.text("Rating: " + rating);
+        makeli.attr("style", "margin-top: 10px;");
+
         makeli.appendTo(getul);
+        descriptionli.appendTo(getul);
+        ratingli.appendTo(getul);
 
         if (pic !== "") {
             video.attr("src", pic);
@@ -519,7 +532,6 @@ $(document).ready(function () {
     }
 
     $("#searchNow").on("click", searchButtonClicked);
-    //$(".recentlySearchedClass").on("click", searchRecentButton);
     getListOfPlatforms(queryURLRAWGPlatform);
     getListOfGenres(queryURLRAWGGenre);
     PopulateLastSearches();
