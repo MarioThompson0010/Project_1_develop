@@ -483,7 +483,7 @@ $(document).ready(function () {
     // populate results
     function populateUsingCriteria(gotdata) {
 
-        section = $("#results");
+        section = $(".section1");
 
         //var getul = $("#resultsList");
         //var makeli = $("<li>");
