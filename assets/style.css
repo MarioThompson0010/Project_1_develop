@@ -178,8 +178,8 @@
     display: none;
     overflow: hidden;
     background-color: #f1f1f1;
-  }
-  
+}
+
 
     footer{
         background-color:  #0a796a;
@@ -188,7 +188,7 @@
     .footer{
         display: flex;
         align-items: baseline;
-        width: 56%;
+        width: 80%;
         padding-bottom: 30px;
         padding-top: 30px;
         margin: 0 auto;
@@ -198,12 +198,9 @@
     .copright{
         color: #fff;
         opacity: 0.6;
-        float: left;
+        flex: left;
     }
-    .footerNav {
-        position: absolute;
-        right: 0;  
-    }
+
     .errorSign
     {
     border: red;
