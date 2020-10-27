@@ -495,8 +495,11 @@ $(document).ready(function () {
         var descriptionli = $("<div>");
         var ratingli = $("<div>");
         var divTitle = $("<div>");
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 9eeace1e174a43d17b7a964b1f60aa2a75f58cee
 
         var name = "";
         var pic = "";
@@ -520,10 +523,22 @@ $(document).ready(function () {
         }
 
         divTitle.text("Title: " + name);
+<<<<<<< HEAD
         divTitle.attr("style", "margin-top: 10pt:");
         descriptionli.text("Description: " + description);
         ratingli.text("Rating: " + rating);
         //makeli.attr("style", "margin-top: 10px;");
+=======
+        divTitle.attr("style", "margin-top: 10px;");
+        descriptionli.text("Description: " + description);
+        ratingli.text("Rating: " + rating);
+        //makeli.attr("style", "margin-top: 10px;");
+
+        // append to card
+        divTitle.appendTo(card);
+        descriptionli.appendTo(card);
+        ratingli.appendTo(card);
+>>>>>>> 9eeace1e174a43d17b7a964b1f60aa2a75f58cee
 
         // append to card
         if (pic !== "") {
@@ -532,12 +547,15 @@ $(document).ready(function () {
             video.attr("height", 200);
             video.attr("controls", "controls");
             video.appendTo(card);
+<<<<<<< HEAD
 
         divTitle.appendTo(card);
         descriptionli.appendTo(card);
         ratingli.appendTo(card);
 
 
+=======
+>>>>>>> 9eeace1e174a43d17b7a964b1f60aa2a75f58cee
         }
 
         //makeli.appendTo(getul);
