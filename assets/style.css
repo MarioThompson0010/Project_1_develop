@@ -1,5 +1,6 @@
 
     @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300&display=swap');
+    
 
 *{
     padding: 0;
@@ -33,6 +34,27 @@ header{
     cursor: pointer;
     padding-top:30px;
 }
+
+.recs{
+    font-weight: 100;
+    text-align: center;
+    float: center;
+    font-size: 1.9em;
+    text-transform: uppercase;
+    border-top: 8px  solid  #0a796a;
+    padding-top:30px;
+}
+
+#resultsList{
+    flex-direction: row;
+    align-content: flex-start;
+}
+
+#wrap{
+    width: 300px;
+    margin: auto;
+}
+
 .top .columns{
     float: right; 
     padding-top: 66px;
@@ -74,7 +96,7 @@ header{
     left .5s ease;
 }
 .column:hover::after{
-    width: 100%;
+    width: 1000%;
     left: 0;
     cursor: pointer;
     background: #fff;
@@ -117,13 +139,17 @@ transition: background 0s;
 }
 
 .section1{
-    width: 60%;
+    width: 80%;
     display: flex;
     justify-content: center;
     align-items: center;
     margin: 0 auto;
     padding-top: 30px;
     padding-bottom: 30px;
+}
+.results{
+    width: 800px;
+    flex-direction: row;
 }
 .card{
     position: relative;
@@ -167,7 +193,7 @@ footer{
 .footer{
     display: flex;
     align-items: baseline;
-    width: 56%;
+    width: 90;
     padding-bottom: 30px;
     padding-top: 30px;
     margin: 0 auto;
@@ -182,12 +208,12 @@ footer{
 .footerNav {
     position: absolute;
     right: 0;  
+    
 }
-.errorSign
-{
-  border: red;
-  border-width: 3px;
-  border-style: solid;
+.errorSign{
+border: red;
+border-width: 3px;
+border-style: solid;
 } 
 
 @media screen and (max-width:800px){

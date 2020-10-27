@@ -135,7 +135,7 @@ $(document).ready(function () {
             button.attr("data-key", key);
             button.addClass("recentlySearchedClass");
             var splitted = nameoCity.split(',');
-             button.text("Error");
+            button.text("Error");
 
             if (splitted.length > 0)
             {

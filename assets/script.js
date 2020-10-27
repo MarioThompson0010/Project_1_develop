@@ -483,12 +483,18 @@ $(document).ready(function () {
     // populate results
     function populateUsingCriteria(gotdata) {
 
-        var getul = $("#resultsList");
-        var makeli = $("<li>"); //move each result into different li
+        section = $("#results");
+
+        //var getul = $("#resultsList");
+        //var makeli = $("<li>");
         var video = $("<video>");
 
-        var descriptionli = $("<li>");
-        var ratingli = $("<li>");
+        var card = $("<card>");
+        card.addClass("card");
+
+        var descriptionli = $("<div>");
+        var ratingli = $("<div>");
+        var divTitle = $("<div>");
 
         var name = "";
         var pic = "";
@@ -504,13 +510,6 @@ $(document).ready(function () {
         {
             description = gotdata.description; 
             description = description.replace(/(&quot;)|(&hellip;  Expand)|(&amp;)/g, "");
-            //description = description.replace(/(&hellip;  Expand)/g, "");
-            //var lengthofdesc = description.length;
-            // var sublength = description.substring(lengthofdesc - "Expand".length, lengthofdesc);
-            // if (sublength.includes("Expand"))
-            // {
-            //     description.replace(lengthofdesc - "Expand".length, )
-            // }
         }
 
         if (gotdata.rating !== null)
@@ -518,22 +517,28 @@ $(document).ready(function () {
             rating = gotdata.rating;
         }
 
-        makeli.text("Title: " + name);
-        descriptionli.text("Description: " + description); 
-        ratingli.text("Rating: " + rating); //also want to add score
-        makeli.attr("style", "margin-top: 10px;");
+        divTitle.text("Title: " + name);
+        divTitle.attr("style", "margin-top: 10px;");
+        descriptionli.text("Description: " + description);
+        ratingli.text("Rating: " + rating);
+        //makeli.attr("style", "margin-top: 10px;");
 
-        makeli.appendTo(getul);
-        descriptionli.appendTo(getul);
-        ratingli.appendTo(getul);
+        // append to card
+        divTitle.appendTo(card);
+        descriptionli.appendTo(card);
+        ratingli.appendTo(card);
 
         if (pic !== "") {
             video.attr("src", pic);
             video.attr("width", 200);
             video.attr("height", 200);
             video.attr("controls", "controls");
-            video.appendTo(getul);
+            video.appendTo(card);
         }
+
+        //makeli.appendTo(getul);
+        //getul.appendTo(card);
+        card.appendTo(section);
     }
 
     $("#searchNow").on("click", searchButtonClicked);
