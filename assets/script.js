@@ -484,7 +484,7 @@ $(document).ready(function () {
     function populateUsingCriteria(gotdata) {
 
         var getul = $("#resultsList");
-        var makeli = $("<li>");
+        var makeli = $("<li>"); //move each result into different li
         var video = $("<video>");
 
         var descriptionli = $("<li>");
@@ -519,8 +519,8 @@ $(document).ready(function () {
         }
 
         makeli.text("Title: " + name);
-        descriptionli.text("Description: " + description);
-        ratingli.text("Rating: " + rating);
+        descriptionli.text("Description: " + description); 
+        ratingli.text("Rating: " + rating); //also want to add score
         makeli.attr("style", "margin-top: 10px;");
 
         makeli.appendTo(getul);
