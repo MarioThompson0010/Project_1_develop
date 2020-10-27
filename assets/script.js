@@ -1,4 +1,4 @@
-// 
+// This js displays recommended games given 3 inputs: platform, genre, and keywords.
 $(document).ready(function () {
 
     var PAGE_SIZE_STRING = "10"; // number of suggestions for user
@@ -83,11 +83,6 @@ $(document).ready(function () {
         "x-rapidapi-host": RAWGHost
     }
 
-    var headerParamsGenres = {
-        "x-rapidapi-key": rapidKey,
-        "x-rapidapi-host": RAWGHost
-    }
-
     // display platform to screen
     function displayPlatformToScreen() {
 
@@ -117,6 +112,7 @@ $(document).ready(function () {
         }
     }
 
+    // get local storage function
     function getLocalStorageFunc() {
         var getlocalstorage = JSON.parse(localStorage.getItem(SAVE_INFO_KEY));
 
@@ -127,6 +123,7 @@ $(document).ready(function () {
         return getlocalstorage;
     }
 
+    // populate the most recent searches list
     function PopulateLastSearches() {
         var recentul = $("#recentSearchedUL");
         var gotlocal = getLocalStorageFunc();
@@ -141,7 +138,7 @@ $(document).ready(function () {
             if (key !== undefined && key !== "") {
                 button.attr("data-key", key);
                 button.addClass("recentlySearchedClass");
-                button.bind("click", searchRecentButton); 
+                button.bind("click", searchRecentButton);
                 var splitted = key.split(',');
                 button.text("Error");
 
@@ -162,9 +159,9 @@ $(document).ready(function () {
         }
     }
 
-    function commonToSearch()
-    {
-        var getul = $("#resultsList");
+    // stuff that is common to searching, either by Search button or most recently searched button
+    function commonToSearch() {
+        var getul = $(".section1");
         getul.empty();
         PagesProcessed = 0;
     }
@@ -176,10 +173,6 @@ $(document).ready(function () {
         var splitted = gotdata.split(',');
         // get list of searches
 
-        // selectedsearch = false;
-        // selectedplatform = false;
-        // selectedgenre = false;
-
         var searchCriteria = Object.create(searchCriteriaSelect);
 
         searchCriteria.searchval = splitted[0];
@@ -188,21 +181,12 @@ $(document).ready(function () {
 
         buildGamesURLHelper(searchCriteria);
 
-
-        // if (searchGuy !== "") {
-        // selectedsearch = true;
-        // }
-        // if (genreGuy !== undefined) {
-        // selectedgenre = true;
-        // }
-        // if (platformGuy !== undefined) {
-        // selectedplatform = true;
-        // }
-
         getListOfGames(splitted[0], splitted[1], splitted[2],
             searchCriteria.selectedsearch, searchCriteria.selectedgenre, searchCriteria.selectedplatform);
     }
 
+    // trying to DRY code, use this helper if you need to do any more type of searching.
+    // searchCriteria is just an object used to pass by reference which criteria were used.
     function buildGamesURLHelper(searchCriteria) {
 
         if (searchCriteria.searchval !== "") {
@@ -221,9 +205,6 @@ $(document).ready(function () {
         event.preventDefault();
         clickedSearchButton = true;
         commonToSearch();
-        
-        //var getlocalstorage = getLocalStorageFunc();
-
 
         // gather inputs
         var searchGuy = $("#searchid").val().trim();
@@ -289,9 +270,9 @@ $(document).ready(function () {
 
         getobject.namesearched = searched.val().trim();
         getobject.genresearched = datag;
-        getobject.genredescription = $("#genreid :selected").val(); 
+        getobject.genredescription = $("#genreid :selected").val();
         getobject.platformsearched = datap;
-        getobject.platdescription = $("#platformid :selected").val(); 
+        getobject.platdescription = $("#platformid :selected").val();
 
         getobject.key = getobject.namesearched + "," + getobject.genresearched + "," + getobject.platformsearched;
 
@@ -488,6 +469,7 @@ $(document).ready(function () {
         //var getul = $("#resultsList");
         //var makeli = $("<li>");
         var video = $("<video>");
+        var image = $("<img>");
 
         var card = $("<card>");
         card.addClass("card");
@@ -495,8 +477,11 @@ $(document).ready(function () {
         var descriptionli = $("<div>");
         var ratingli = $("<div>");
         var divTitle = $("<div>");
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> e4687411de58a2f4eb25b54ab33a12d4494ff093
 
         var name = "";
         var pic = "";
@@ -508,24 +493,27 @@ $(document).ready(function () {
             pic = gotdata.games.pic;
         }
 
-        if (gotdata.description !== null)
-        {
-            description = gotdata.description; 
+        if (gotdata.description !== null) {
+            description = gotdata.description;
             description = description.replace(/(&quot;)|(&hellip;  Expand)|(&amp;)/g, "");
         }
 
-        if (gotdata.rating !== null)
-        {
+        if (gotdata.rating !== null) {
             rating = gotdata.rating;
+        }
+
+        if (gotdata.image !== null) {
+            image.attr("src", gotdata.image);
+            image.attr("alt", "image of game");
         }
 
         divTitle.text("Title: " + name);
         divTitle.attr("style", "margin-top: 10px;");
         descriptionli.text("Description: " + description);
         ratingli.text("Rating: " + rating);
-        //makeli.attr("style", "margin-top: 10px;");
 
         // append to card
+        image.appendTo(card);
         divTitle.appendTo(card);
         descriptionli.appendTo(card);
         ratingli.appendTo(card);
@@ -537,16 +525,17 @@ $(document).ready(function () {
             video.attr("height", 200);
             video.attr("controls", "controls");
             video.appendTo(card);
+<<<<<<< HEAD
 
         divTitle.appendTo(card);
         descriptionli.appendTo(card);
         ratingli.appendTo(card);
 
 
+=======
+>>>>>>> e4687411de58a2f4eb25b54ab33a12d4494ff093
         }
 
-        //makeli.appendTo(getul);
-        //getul.appendTo(card);
         card.appendTo(section);
     }
 
