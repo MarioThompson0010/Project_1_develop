@@ -1,7 +1,7 @@
 // 
 $(document).ready(function () {
 
-    var PAGE_SIZE_STRING = "5"; // number of suggestions for user
+    var PAGE_SIZE_STRING = "10"; // number of suggestions for user
     var PagesProcessed = 0;
     var SAVE_INFO_KEY = "save_info_games";
     var listOfPlatforms = [];
@@ -141,7 +141,7 @@ $(document).ready(function () {
             if (key !== undefined && key !== "") {
                 button.attr("data-key", key);
                 button.addClass("recentlySearchedClass");
-                button.bind("click", searchRecentButton); // need this for looking up a city that was recently added
+                button.bind("click", searchRecentButton); 
                 var splitted = key.split(',');
                 button.text("Error");
 
@@ -483,7 +483,7 @@ $(document).ready(function () {
     // populate results
     function populateUsingCriteria(gotdata) {
 
-        section = $("#results");
+        section = $(".section1");
 
         //var getul = $("#resultsList");
         //var makeli = $("<li>");
@@ -495,6 +495,8 @@ $(document).ready(function () {
         var descriptionli = $("<div>");
         var ratingli = $("<div>");
         var divTitle = $("<div>");
+
+
 
         var name = "";
         var pic = "";
@@ -518,22 +520,24 @@ $(document).ready(function () {
         }
 
         divTitle.text("Title: " + name);
-        divTitle.attr("style", "margin-top: 10px;");
+        divTitle.attr("style", "margin-top: 10pt:");
         descriptionli.text("Description: " + description);
         ratingli.text("Rating: " + rating);
         //makeli.attr("style", "margin-top: 10px;");
 
         // append to card
+        if (pic !== "") {
+            video.attr("src", pic);
+            video.attr("width", 220);
+            video.attr("height", 200);
+            video.attr("controls", "controls");
+            video.appendTo(card);
+
         divTitle.appendTo(card);
         descriptionli.appendTo(card);
         ratingli.appendTo(card);
 
-        if (pic !== "") {
-            video.attr("src", pic);
-            video.attr("width", 200);
-            video.attr("height", 200);
-            video.attr("controls", "controls");
-            video.appendTo(card);
+
         }
 
         //makeli.appendTo(getul);
