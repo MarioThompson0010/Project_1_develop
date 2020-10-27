@@ -133,52 +133,39 @@
     }
 
     .card{
+        box-sizing: border-box;
+        border-style: solid;
+        border-width: 0 0 0 10pt;
+        border-color: #0a796a;
         height: 300px;
         position: sticky;
         width: 240px;
-        box-sizing: border-box;
-        border-color: #444;
-        border-style: outset;
         white-space: hidden;
         overflow: scroll;
-        text-overflow: ellipsis;
-        text-rendering: auto ;
         margin: 15px;
     }
 
-    .divTitle{
-        font-weight: bold;
+    .card:hover{
+        cursor: pointer;
+        background: #b0c0ce radial-gradient(circle, transparent 1%, #b0c0ce 1%) center/15000%;
     }
 
-    .style{
-        font-size: 15pt;
+    .card::-webkit-scrollbar{
+        display: none;
     }
 
-    /* Style the button that is used to open and close the collapsible content */
-.collapsible {
-    background-color: #eee;
-    color: #444;
-    cursor: pointer;
-    padding: 18px;
-    width: 100%;
-    border: none;
-    text-align: left;
-    outline: none;
-    font-size: 15px;
-  }
-  
-  /* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
-  .active, .collapsible:hover {
-    background-color: #ccc;
-  }
-  
-  /* Style the collapsible content. Note: hidden by default */
-  .content {
-    padding: 0 18px;
-    display: none;
-    overflow: hidden;
-    background-color: #f1f1f1;
-}
+    h4{
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+    }
+
+    p{
+        font-size: 10pt;
+        font-weight: bolder;
+    }
+
+    .img{
+        border-radius: 10pt;
+    }
 
 
     footer{
@@ -188,18 +175,37 @@
     .footer{
         display: flex;
         align-items: baseline;
-        width: 80%;
+        width: 90%;
         padding-bottom: 30px;
         padding-top: 30px;
-        margin: 0 auto;
+        margin: auto;
         font-size: 0.8em;
         position: relative;
     }
-    .copright{
-        color: #fff;
-        opacity: 0.6;
-        flex: left;
+
+    ul {
+        list-style-type: none;
     }
+
+    li{
+        display: inline;
+    }
+
+    .recentlySearchedClass{
+        border: 1px solid #fff;
+        color: #fff;
+        background: transparent;
+        padding: 5px 5px;
+        border-radius: 5px;
+        text-transform: uppercase;
+        outline: none;
+        background-position: center;
+        transition: background 0.8s;
+    }
+
+    .recentlySearchedClass:hover{
+        cursor: pointer;
+        background: #526f86 radial-gradient(circle, transparent 1%, #657b8d 1%) center/15000%;
 
     .errorSign
     {

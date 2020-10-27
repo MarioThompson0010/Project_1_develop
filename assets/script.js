@@ -470,18 +470,16 @@ $(document).ready(function () {
         //var makeli = $("<li>");
         var video = $("<video>");
         var image = $("<img>");
+        image.addClass("img");
 
         var card = $("<card>");
         card.addClass("card");
 
-        var descriptionli = $("<div>");
+        var descriptionli = $("<p>");
         var ratingli = $("<div>");
-        var divTitle = $("<div>");
-<<<<<<< HEAD
+        var divTitle = $("<h4>");
 
 
-=======
->>>>>>> e4687411de58a2f4eb25b54ab33a12d4494ff093
 
         var name = "";
         var pic = "";
@@ -525,15 +523,12 @@ $(document).ready(function () {
             video.attr("height", 200);
             video.attr("controls", "controls");
             video.appendTo(card);
-<<<<<<< HEAD
 
         divTitle.appendTo(card);
         descriptionli.appendTo(card);
         ratingli.appendTo(card);
 
 
-=======
->>>>>>> e4687411de58a2f4eb25b54ab33a12d4494ff093
         }
 
         card.appendTo(section);
