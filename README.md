@@ -15,3 +15,9 @@ The app requires only that one of the three criteria be used. The user must sele
 The user then clicks the Search button to get a list of up to 5 sets of information about each video game: the title, the description, and possibly the following two, if they're available: the rating and a video clip.  
 
 A list of most recently searched-for names is stored in local storage, as a list of buttons.  The user may select a recent search instead of typing in the information.
+
+The information is displayed in card format, with an image representing the video game at the top of the card, followed by information in text format, followed by, possibly, a video clip.  
+
+## Responsiveness
+
+This web app is responsive. You can view it on a large screen or a tiny phone screen.

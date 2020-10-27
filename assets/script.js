@@ -466,8 +466,6 @@ $(document).ready(function () {
 
         section = $(".section1");
 
-        //var getul = $("#resultsList");
-        //var makeli = $("<li>");
         var video = $("<video>");
         var image = $("<img>");
         image.addClass("img");
@@ -478,7 +476,7 @@ $(document).ready(function () {
         var descriptionli = $("<p>");
         var ratingli = $("<div>");
         var divTitle = $("<h4>");
-
+        var pScore = $("<p>");
 
 
         var name = "";
@@ -509,10 +507,12 @@ $(document).ready(function () {
         divTitle.attr("style", "margin-top: 10px;");
         descriptionli.text("Description: " + description);
         ratingli.text("Rating: " + rating);
+        pScore.text("Score: " + gotdata.score);
 
         // append to card
         image.appendTo(card);
         divTitle.appendTo(card);
+        pScore.appendTo(card);
         descriptionli.appendTo(card);
         ratingli.appendTo(card);
 
@@ -524,9 +524,9 @@ $(document).ready(function () {
             video.attr("controls", "controls");
             video.appendTo(card);
 
-        divTitle.appendTo(card);
-        descriptionli.appendTo(card);
-        ratingli.appendTo(card);
+            divTitle.appendTo(card);
+            descriptionli.appendTo(card);
+            ratingli.appendTo(card);
 
 
         }
