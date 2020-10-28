@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Game Base</title>
+    <title>Game Safe</title>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-     <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css"> -->
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css"> -->
     <link rel="stylesheet" href="./assets/style.css">
 
 </head>
@@ -16,8 +16,9 @@
 
     <!-- Primary Logo, should probably keep it simple-->
                 <div class="logo">
-                    <span>Game <br>Base</span>
+                    <span>Game <br>Safe</span>
                 </div>
+
 
     <!-- This will be the main search bar for the apps functionality, considering place it somewhere differnt -->
 
@@ -37,7 +38,7 @@
                         <div class="column">
                             <label for="genre">genre:</label>
                             <select name="genre" id="genreid">
-                                <option value="blank">Select Genre</option>
+                                <option value="">Select Genre</option>
                             </select>
                         </div>
                         <div class="column">
@@ -45,7 +46,16 @@
                                 platform
                             </label>
                             <select name="platformer" id="platformid">
-                                <option value="volvo">Select Platform</option>
+                                <option value="">Select Platform</option>
+                            </select>
+                        
+                        </div>
+                        <div class="column">
+                            <label for="ratings">
+                                Ratings
+                            </label>
+                            <select name="ratings" id="ratingsid">
+                                <option value="">Select Rating</option>
                             </select>
                         
                         </div>
@@ -57,7 +67,7 @@
     <!-- Brief explanation of the website and how it works -->
             <div class="line1">Select your parameters then click 'search'</div>
             <div class="">
-                <p class="line2">We will get you the information needed to pick your next adventure</p>
+                <p class="line2">Then let us take care of finding games that YOU are ok with</p>
             </div>
             <div class="btn">
                 <button id="searchNow" type="submit">
