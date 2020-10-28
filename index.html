@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Base</title>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+     <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css"> -->
+    <link rel="stylesheet" href="./assets/style.css">
+
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="top">
+
+    <!-- Primary Logo, should probably keep it simple-->
+                <div class="logo">
+                    <span>Game <br>Base</span>
+                </div>
+
+    <!-- This will be the main search bar for the apps functionality, considering place it somewhere differnt -->
+
+                <form>
+                    <div class="columns">
+                        
+            
+                        <div class="column">
+                            <label for="searcher">Key Words</label>
+                            <input id="searchid" style="max-width: 200px;" name="searcher">
+                            <div class="columns">
+                                <div class="column is-full" id="errorDiv">
+                                </div>
+                            </div>
+                        </div>
+                
+                        <div class="column">
+                            <label for="genre">genre:</label>
+                            <select name="genre" id="genreid">
+                                <option value="blank">Select Genre</option>
+                            </select>
+                        </div>
+                        <div class="column">
+                            <label for="platformer">
+                                platform
+                            </label>
+                            <select name="platformer" id="platformid">
+                                <option value="volvo">Select Platform</option>
+                            </select>
+                        
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+
+    <!-- Brief explanation of the website and how it works -->
+            <div class="line1">Select your parameters then click 'search'</div>
+            <div class="">
+                <p class="line2">We will get you the information needed to pick your next adventure</p>
+            </div>
+            <div class="btn">
+                <button id="searchNow" type="submit">
+                    Search
+                </button>
+            </div>
+        </div>
+
+        
+
+    </header>
+
+    <!-- Using this as a place holder to show what page should look like until script is added -->
+    <section>
+        <div class="recs">
+            <form>
+                <label>Recommendations</label>
+            </form>
+            
+        </div>
+        
+        <div class="section1">
+
+        </div>
+
+        <div class="results">
+
+
+        </div>
+
+    </section>
+    <footer>
+
+    <!-- Footer Nave bar - not 100% sure if need seperate pages yet, might be easier to keep all info local -->
+        <div class="footer">
+                <div class="ulclass">
+                    <ul id="recentSearchedUL">
+                    </ul>
+                </div>
+        
+
+        </div>
+    </footer>
+
+    <script src="./assets/script.js"></script>
+</body>
+</html>

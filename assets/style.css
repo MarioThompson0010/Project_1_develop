@@ -1,0 +1,235 @@
+
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300&display=swap');
+
+    *{
+        padding: 0;
+        margin:0;
+        font-family: 'Montserrat', sans-serif;
+    }
+    header{
+        width: 100%;
+        min-height: 200px;
+        background-color: #0a796a;
+        color: #fff;
+    }
+    .container{
+        width: 90%;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        margin: 0 auto;
+    }
+    .top{
+        width: 100%;
+    }
+    .top .logo{
+        font-weight: 100;
+        float: left;
+        left:0;
+        font-size: 2.2em;
+        text-transform: uppercase;
+        border-top: 4px  solid  #798288;
+        cursor: pointer;
+        padding-top:30px;
+    }
+    .top .columns{
+        float: right; 
+        padding-top: 66px;
+    }
+    .top .columns .caption{
+        font-size: 0.9em;
+        font-weight: 300;
+        color:  #fff;
+        opacity: 0.4;
+        float: right;
+        margin-right: 0;
+    }
+    .columns{
+        padding-top: 25px;
+    
+    }
+    .column{
+        display: inline;
+    }
+    .column{
+        text-decoration: none;
+        color: #fff;
+        font-size: 0.7em;
+        text-transform: uppercase;
+        font-weight: 300;
+        margin-left: 10px;
+        position: relative;
+    }
+    .column::after{
+        content: '';
+        position: absolute;
+        width: 0;
+        left: 50%;
+        height: 1px;
+        bottom: -3px;
+        background-color:transparent;
+        transition: width .5s ease,
+        background-color .5s ease,
+        left .5s ease;
+    }
+    .column:hover::after{
+        width: 100%;
+        left: 0;
+        cursor: pointer;
+        background: #fff;
+    }
+    .line1{
+        font-size: 1.6em;
+        opacity: 0.4;
+        text-align: center;
+        width: 100%;
+        padding-top: 40px;
+    }
+    .line2{
+        font-size: 1.1rem;
+        text-align: center;
+        padding: 10px;
+        font-weight: 100;
+    }
+    .btn{
+        padding: 30px;
+    }
+    .btn button{
+        border: 1px solid #fff;
+        color: #fff;
+        background: transparent;
+        padding: 15px 20px;
+        border-radius: 5px;
+        text-transform: uppercase;
+        outline: none;
+        background-position: center;
+        transition: background 0.8s;
+    }
+    .btn button:hover{
+        cursor: pointer;
+        background: #526f86 radial-gradient(circle, transparent 1%, #657b8d 1%) center/15000%;
+    }
+    .btn button:active{
+        background-color: #526f86;
+    background-size: 100%;
+    transition: background 0s;
+    }
+
+    .recs{
+        text-align: center;
+        font-size: 20pt;
+        padding-top: 10pt;
+    }
+    
+    .section1{
+        width: 95%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin: auto;
+        padding-top: 0px;
+        padding-bottom: 30px;
+    }
+
+    .card{
+        box-sizing: border-box;
+        border-style: solid;
+        border-width: 0 0 0 10pt;
+        border-color: #0a796a;
+        height: 300px;
+        position: sticky;
+        width: 240px;
+        white-space: hidden;
+        overflow: scroll;
+        margin: 15px;
+    }
+
+    .card:hover{
+        cursor: pointer;
+        background: #b0c0ce radial-gradient(circle, transparent 1%, #b0c0ce 1%) center/15000%;
+    }
+
+    .card::-webkit-scrollbar{
+        display: none;
+    }
+
+    h4{
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+    }
+
+    p{
+        font-size: 10pt;
+        font-weight: bolder;
+    }
+
+    .img{
+        border-radius: 10pt;
+    }
+
+
+    footer{
+        background-color:  #0a796a;
+        position: sticky;
+    }
+    .footer{
+        display: flex;
+        align-items: baseline;
+        width: 90%;
+        padding-bottom: 30px;
+        padding-top: 30px;
+        margin: auto;
+        font-size: 0.8em;
+        position: relative;
+    }
+
+    ul {
+        list-style-type: none;
+    }
+
+    li{
+        display: inline;
+    }
+
+    .recentlySearchedClass{
+        border: 1px solid #fff;
+        color: #fff;
+        background: transparent;
+        padding: 5px 5px;
+        border-radius: 5px;
+        text-transform: uppercase;
+        outline: none;
+        background-position: center;
+        transition: background 0.8s;
+    }
+
+    .recentlySearchedClass:hover{
+        cursor: pointer;
+        background: #526f86 radial-gradient(circle, transparent 1%, #657b8d 1%) center/15000%;
+
+    .errorSign
+    {
+    border: red;
+    border-width: 3px;
+    border-style: solid;
+    } 
+    
+    @media screen and (max-width:800px){
+        .section1{
+            display: flex;
+            flex-wrap: wrap;
+        }
+    .top .logo{
+        font-size:1.8em;
+    }
+    .line1{
+        font-size: 1.2em;
+    }
+    .line2{
+        font-size: 1em
+    }
+    .top .sideMenu{
+        padding-top:55px
+    }
+    
+    }

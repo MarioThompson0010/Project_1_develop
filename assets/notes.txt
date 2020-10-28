@@ -1,0 +1,26 @@
+Chicken Coop Api
+https://rapidapi.p.rapidapi.com/games/Rise%20of%20the%20Tomb%20Raider?
+
+URL:
+
+headers:
+x-rapidapi-key:a2b5d3b684mshabbf5412b1d3507p11b0a1jsnd2cd92016a40
+x-rapidapi-host:chicken-coop.p.rapidapi.com
+
+headers
+$.ajax({
+    url: "/test",
+    headers: {"X-Test-Header": "test-value"}
+});
+
+sParameter = encodeURIComponent(sParameter.trim()) //"Test%20-%20Text"
+
+Twitch
+0fjwahj3bvebnadnaantn7uzwupjtq
+
+RAWG video games
+url: https://rapidapi.p.rapidapi.com/games
+
+header
+x-rapidapi-host: rawg-video-games-database.p.rapidapi.com
+x-rapidapi-key : a2b5d3b684mshabbf5412b1d3507p11b0a1jsnd2cd92016a40
