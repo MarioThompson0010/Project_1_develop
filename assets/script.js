@@ -472,9 +472,9 @@ $(document).ready(function () {
         card.addClass("card");
 
         var descriptionli = $("<p>");
-        var ratingli = $("<div>");
+        var ratingli = $("<h5>");
         var divTitle = $("<h4>");
-        var pScore = $("<p>");
+        var pScore = $("<h5>");
 
 
         var name = "";
@@ -507,12 +507,6 @@ $(document).ready(function () {
         ratingli.text("Rating: " + rating);
         pScore.text("Score: " + gotdata.score);
 
-        // append to card
-        image.appendTo(card);
-        divTitle.appendTo(card);
-        pScore.appendTo(card);
-        descriptionli.appendTo(card);
-        ratingli.appendTo(card);
 
         // append to card
         if (pic !== "") {
@@ -523,8 +517,11 @@ $(document).ready(function () {
             video.appendTo(card);
 
             divTitle.appendTo(card);
-            descriptionli.appendTo(card);
             ratingli.appendTo(card);
+            pScore.appendTo(card);
+            image.appendTo(card);
+            descriptionli.appendTo(card);
+
         }
 
         card.appendTo(section);
