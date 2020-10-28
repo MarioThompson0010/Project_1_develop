@@ -9,8 +9,6 @@ $(document).ready(function () {
     var listOfGames = []; // call RAWG to get this list
     var listOfChickens = []; // this is the one that will display the data
 
-    var listOfSearchHistory = []; // display last three searches
-
     var searchCriteriaSelect = {
         genreval: "",
         platval: "",
@@ -21,14 +19,13 @@ $(document).ready(function () {
         selectedsearch: false
     };
 
-
     var clickedSearchButton = false;
 
     var searchObject = {
         namesearched: "",
-        platformsearched: "",
+        platformsearched: undefined,
         platdescription: "",
-        genresearched: "",
+        genresearched: undefined,
         genredescription: "",
         key: ""
     };
@@ -117,7 +114,7 @@ $(document).ready(function () {
         var getlocalstorage = JSON.parse(localStorage.getItem(SAVE_INFO_KEY));
 
         if (getlocalstorage === null) {
-            getlocalstorage = Object.create(listOfSearchHistory);
+            getlocalstorage = []; 
         }
 
         return getlocalstorage;
@@ -270,8 +267,10 @@ $(document).ready(function () {
 
         getobject.namesearched = searched.val().trim();
         getobject.genresearched = datag;
+
         getobject.genredescription = $("#genreid :selected").val();
         getobject.platformsearched = datap;
+
         getobject.platdescription = $("#platformid :selected").val();
 
         getobject.key = getobject.namesearched + "," + getobject.genresearched + "," + getobject.platformsearched;
@@ -308,7 +307,6 @@ $(document).ready(function () {
     // the "then" of having called the ChickenCoop API
     // this function gets popped off the stack as program control returns
     function calledCC(response) {
-        var debug = 0;
         var item = response.result;
         PagesProcessed++;
 
@@ -527,8 +525,6 @@ $(document).ready(function () {
             divTitle.appendTo(card);
             descriptionli.appendTo(card);
             ratingli.appendTo(card);
-
-
         }
 
         card.appendTo(section);
