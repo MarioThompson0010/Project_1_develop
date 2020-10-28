@@ -442,7 +442,7 @@ $(document).ready(function () {
     // build chickenCoop url
     function buildURL(nameOfTheVideoGame) {
         var sampleVideo = "Rise of the Tomb Raider";
-        var encoded = encodeURIComponent(/*sampleVideo*/ nameOfTheVideoGame);
+        var encoded = nameOfTheVideoGame; //encodeURIComponent(/*sampleVideo*/ nameOfTheVideoGame);
         var queryURL = chickenCoopURL + encoded + "?";
         return queryURL;
     }
