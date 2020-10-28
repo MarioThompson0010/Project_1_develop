@@ -114,7 +114,7 @@ $(document).ready(function () {
         var getlocalstorage = JSON.parse(localStorage.getItem(SAVE_INFO_KEY));
 
         if (getlocalstorage === null) {
-            getlocalstorage = []; 
+            getlocalstorage = [];
         }
 
         return getlocalstorage;
@@ -138,17 +138,30 @@ $(document).ready(function () {
                 button.bind("click", searchRecentButton);
                 var splitted = key.split(',');
                 button.text("Error");
+                var messageOnButton = "";
 
-                if (splitted.length > 0) {
-                    if (splitted[0] !== "") {
-                        button.text(splitted[0]);
+                if (splitted.length > 2) {
+
+                    var namedescript = gotlocal[i].namesearched;
+                    var genredescript = gotlocal[i].genredescription;
+                    var platdescript = gotlocal[i].platdescription;
+
+                    if (namedescript === "") {
+                        namedescript = "No title selected";
                     }
-                    else {
-                        if (splitted.length > 2) {
-                            button.text(gotlocal[i].genredescription + " " + gotlocal[i].platdescription);
-                        }
+
+                    if (genredescript === "") {
+                        genredescript = "No genre selected";
                     }
+
+                    if (platdescript === "") {
+                        platdescript = "No platform selected";
+                    }
+
+                    messageOnButton += namedescript + ", " + genredescript + ", " + platdescript;
+                    button.text(messageOnButton);
                 }
+
 
                 button.appendTo(listitem);
                 listitem.appendTo(recentul);
@@ -259,8 +272,8 @@ $(document).ready(function () {
         var getobject = Object.create(searchObject);
         var searched = $("#searchid");
 
-        var genreGuy = $("#genreid :selected"); //.val();
-        var platformGuy = $("#platformid :selected"); //.val();
+        var genreGuy = $("#genreid :selected");
+        var platformGuy = $("#platformid :selected");
 
         var datag = genreGuy.attr("data-id");
         var datap = platformGuy.attr("data-id");
@@ -515,14 +528,13 @@ $(document).ready(function () {
             video.attr("height", 200);
             video.attr("controls", "controls");
             video.appendTo(card);
-
-            divTitle.appendTo(card);
-            ratingli.appendTo(card);
-            pScore.appendTo(card);
-            image.appendTo(card);
-            descriptionli.appendTo(card);
-
         }
+
+        divTitle.appendTo(card);
+        ratingli.appendTo(card);
+        pScore.appendTo(card);
+        image.appendTo(card);
+        descriptionli.appendTo(card);
 
         card.appendTo(section);
     }
