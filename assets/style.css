@@ -213,6 +213,7 @@
     .recentlySearchedClass:hover{
         cursor: pointer;
         background: #526f86 radial-gradient(circle, transparent 1%, #657b8d 1%) center/15000%;
+    }
 
     .errorSign
     {

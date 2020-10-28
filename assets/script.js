@@ -2,13 +2,14 @@
 $(document).ready(function () {
 
     var PAGE_SIZE_STRING = "10"; // number of suggestions for user
-    var PagesProcessed = 0;
-    var SAVE_INFO_KEY = "save_info_games";
-    var listOfPlatforms = [];
-    var listOfGenres = [];
+    var PagesProcessed = 0; // keep track of number of pages processed so far, so we can do synchronous work
+    var SAVE_INFO_KEY = "save_info_games"; //key to local storage
+    var listOfPlatforms = []; //used to display the list of platforms
+    var listOfGenres = []; // //used to display the list of genres
     var listOfGames = []; // call RAWG to get this list
     var listOfChickens = []; // this is the one that will display the data
 
+    // helper to pass by reference primitive variables
     var searchCriteriaSelect = {
         genreval: "",
         platval: "",
@@ -19,8 +20,10 @@ $(document).ready(function () {
         selectedsearch: false
     };
 
+    // if the user clicked Search, do something different than if the user clicked a recently searched
     var clickedSearchButton = false;
 
+    // info needed when created recently searched for buttons
     var searchObject = {
         namesearched: "",
         platformsearched: undefined,
@@ -42,6 +45,7 @@ $(document).ready(function () {
         pagenum: 1
     };
 
+    // use in chickenCoopObject. Info from RAWG.
     var gamesObject = {
         id: 0,
         name: "",
@@ -50,6 +54,7 @@ $(document).ready(function () {
         released: ""
     };
 
+    // Info gotten from ChickenCoop API
     var chickenCoopDataObject = {
         games: gamesObject,
         description: "",
@@ -62,11 +67,12 @@ $(document).ready(function () {
         title: ""
     };
 
+    // stuff and keys needed to call APIs
     var rapidKey = "a2b5d3b684mshabbf5412b1d3507p11b0a1jsnd2cd92016a40";
     var RAWGHost = "rawg-video-games-database.p.rapidapi.com";
     var queryURLRAWGPlatform = "https://rapidapi.p.rapidapi.com/platforms?";
 
-    var queryGamesRAWG = "https://rapidapi.p.rapidapi.com/games?page_size=" + PAGE_SIZE_STRING; //&genres=4,51&platforms=21
+    var queryGamesRAWG = "https://rapidapi.p.rapidapi.com/games?page_size=" + PAGE_SIZE_STRING; 
     var queryURLRAWGGenre = "https://rapidapi.p.rapidapi.com/genres?";
     var chickenCoopURL = "https://rapidapi.p.rapidapi.com/games/";
 
@@ -176,6 +182,7 @@ $(document).ready(function () {
         PagesProcessed = 0;
     }
 
+    // Come here after clicking a most recently searched button
     function searchRecentButton(event) {
         event.preventDefault();
         commonToSearch();
@@ -265,7 +272,7 @@ $(document).ready(function () {
     }
 
     // save to local storage
-    function saveLocalStorage(response) {
+    function saveLocalStorage() {
 
         var getobjectArray = getLocalStorageFunc();
 
