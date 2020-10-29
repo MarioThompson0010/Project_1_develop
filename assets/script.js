@@ -153,15 +153,15 @@ $(document).ready(function () {
                     var platdescript = gotlocal[i].platdescription;
 
                     if (namedescript === "") {
-                        namedescript = "No title selected";
+                        namedescript = "No title";
                     }
 
                     if (genredescript === "") {
-                        genredescript = "No genre selected";
+                        genredescript = "No genre";
                     }
 
                     if (platdescript === "") {
-                        platdescript = "No platform selected";
+                        platdescript = "No platform";
                     }
 
                     messageOnButton += namedescript + ", " + genredescript + ", " + platdescript;
@@ -356,6 +356,7 @@ $(document).ready(function () {
                 PopulateLastSearches();
                 clickedSearchButton = false;
             }
+
             var searchid = $("#searchid");
             searchid.val("");
         }
