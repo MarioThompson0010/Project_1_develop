@@ -33,6 +33,7 @@
         cursor: pointer;
         padding-top:30px;
     }
+
     .top .columns{
         float: right; 
         padding-top: 66px;
@@ -49,6 +50,7 @@
         padding-top: 25px;
     
     }
+
     .column{
         display: inline;
     }
@@ -79,6 +81,7 @@
         cursor: pointer;
         background: #fff;
     }
+
     .line1{
         font-size: 1.6em;
         opacity: 0.4;
@@ -136,6 +139,7 @@
         box-sizing: border-box;
         border-style: solid;
         border-width: 0 0 0 10pt;
+        border-radius: 10pt;
         border-color: #0a796a;
         height: 300px;
         position: sticky;
@@ -148,6 +152,7 @@
     .card:hover{
         cursor: pointer;
         background: #b0c0ce radial-gradient(circle, transparent 1%, #b0c0ce 1%) center/15000%;
+        transform: scale(1.1);
     }
 
     .card::-webkit-scrollbar{
@@ -165,6 +170,8 @@
 
     .img{
         border-radius: 10pt;
+        width: 55%;
+        height: auto;
     }
 
 
@@ -206,6 +213,7 @@
     .recentlySearchedClass:hover{
         cursor: pointer;
         background: #526f86 radial-gradient(circle, transparent 1%, #657b8d 1%) center/15000%;
+    }
 
     .errorSign
     {
