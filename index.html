@@ -1,30 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Game Base</title>
+    <title>Game Safe</title>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-     <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css"> -->
     <link rel="stylesheet" href="./assets/style.css">
 
 </head>
+
 <body>
     <header class="header">
         <div class="container">
             <div class="top">
 
-    <!-- Primary Logo, should probably keep it simple-->
+                <!-- Primary Logo, should probably keep it simple-->
+
                 <div class="logo">
-                    <span>Game <br>Base</span>
+                    <span>Game <br>Safe</span>
                 </div>
 
-    <!-- This will be the main search bar for the apps functionality, considering place it somewhere differnt -->
+
+                <!-- This will be the main search bar for the apps functionality, considering place it somewhere differnt -->
 
                 <form>
                     <div class="columns">
-                        
-            
+
+    <!-- Key words search bar -->
+
                         <div class="column">
                             <label for="searcher">Key Words</label>
                             <input id="searchid" style="max-width: 200px;" name="searcher">
@@ -33,32 +37,40 @@
                                 </div>
                             </div>
                         </div>
-                
+    <!-- Genre dropdown list -->
+
                         <div class="column">
                             <label for="genre">genre:</label>
                             <select name="genre" id="genreid">
-                                <option value="blank">Select Genre</option>
+                                <option value="">Select Genre</option>
                             </select>
                         </div>
+    <!-- Platform dropdown list -->
+
                         <div class="column">
                             <label for="platformer">
                                 platform
                             </label>
                             <select name="platformer" id="platformid">
-                                <option value="blank">Select Platform</option>
+                                <option value="">Select Platform</option>
                             </select>
-                        
+
                         </div>
+
                     </div>
                 </form>
 
             </div>
 
     <!-- Brief explanation of the website and how it works -->
+
             <div class="line1">Select your parameters then click 'search'</div>
             <div class="">
-                <p class="line2">We will get you the information needed to pick your next adventure</p>
+                <p class="line2">Then let us take care of finding games that YOU are ok with</p>
             </div>
+
+    <!-- Code for the primary search button -->
+
             <div class="btn">
                 <button id="searchNow" type="submit">
                     Search
@@ -66,19 +78,22 @@
             </div>
         </div>
 
-        
+
 
     </header>
 
     <!-- Using this as a place holder to show what page should look like until script is added -->
+
     <section>
         <div class="recs">
             <form>
                 <label>Recommendations</label>
             </form>
-            
+
         </div>
-        
+
+    <!-- This is where all cards will be generated -->
+
         <div class="section1">
 
         </div>
@@ -91,17 +106,18 @@
     </section>
     <footer>
 
-    <!-- Footer Nave bar - not 100% sure if need seperate pages yet, might be easier to keep all info local -->
+        <!-- Footer Nave bar - contains the recent searches -->
         <div class="footer">
-                <div class="ulclass">
-                    <ul id="recentSearchedUL">
-                    </ul>
-                </div>
-        
+            <div class="ulclass">
+                <ul id="recentSearchedUL">
+                </ul>
+            </div>
+
 
         </div>
     </footer>
 
     <script src="./assets/script.js"></script>
 </body>
+
 </html>
