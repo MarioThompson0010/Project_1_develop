@@ -32,4 +32,8 @@ This web app is responsive. You can view it on a large screen or a tiny phone sc
 
 [Link to Video Game App](https://mariothompson0010.github.io/Project_1_develop/index.html)
 
+If the link to the deployed application is not working due to an endpoint being down (which is the case at the writing of this README, on 2 November, 2020) then click this:
+Backup recording (since an API endpoint is down): 
+[Backup Recording](https://drive.google.com/file/d/1sZQh8cVb6db0vpdou2ocEAte4oA-N5sE/view)
+
 
