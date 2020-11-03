@@ -28,6 +28,8 @@ The information is displayed in card format, with an image representing the vide
 Contact information for my collaborator: David Gibbens. 
 [Link to David Gibbens](https://github.com/dgibbs8089)
 
+List of technologies used: CSS, HTML, RAWG and ChickenCoop APIs, Javascript
+
 ## Responsiveness
 
 This web app is responsive. You can view it on a large screen or a tiny phone screen.
