@@ -1,7 +1,7 @@
 
 # Project 1--Video Game Suggester
 
-## Screenshot:
+## Screenshot:  Note: the ChickenCoop API is not responsive on 11/3/2020.  See video below for demo.
 
 ![Video Game Selector](https://github.com/MarioThompson0010/Project_1_develop/blob/main/assets/images/Screenshot.PNG)
 ![Video Game Screenshot 2](https://github.com/MarioThompson0010/Project_1_develop/blob/main/assets/images/Screenshot2.PNG)
