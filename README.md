@@ -25,6 +25,9 @@ A list of most recently searched-for names is stored in local storage, as a list
 
 The information is displayed in card format, with an image representing the video game at the top of the card, followed by information in text format, followed by, possibly, a video clip.  
 
+Contact information for my collaborator: David Gibbens. 
+[Link to David Gibbens](https://github.com/dgibbs8089)
+
 ## Responsiveness
 
 This web app is responsive. You can view it on a large screen or a tiny phone screen.
