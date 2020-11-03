@@ -3,7 +3,8 @@
 
 ## Screenshot:
 
-![Video Game Selector](https://github.com/dgibbs8089/Project_1_develop/blob/Develop_Branch/assets/images/Screenshot.PNG)
+![Video Game Selector](https://github.com/MarioThompson0010/Project_1_develop/blob/main/assets/images/Screenshot.PNG)
+![Video Game Screenshot 2](https://github.com/MarioThompson0010/Project_1_develop/blob/main/assets/images/Screenshot2.PNG)
 
 
 Welcome to the web site that suggests the names of great video games based on three things: keywords, a platform, and a genre.  Using custom-made CSS, this interactive web app consumes two server-side APIs to first retrieve up to 10 names of video games that the user probably would be interested in.  It uses another API to retrieve more information about each video game returned from the first API call.  
@@ -30,7 +31,7 @@ This web app is responsive. You can view it on a large screen or a tiny phone sc
 
 ## Link to Deployed Application:
 
-[Link to Video Game App](https://mariothompson0010.github.io/Project_1_develop/index.html)
+[Link to Video Game App](https://mariothompson0010.github.io/Project_1_develop/)
 
 ## Link to app demo:
 https://drive.google.com/file/d/1sZQh8cVb6db0vpdou2ocEAte4oA-N5sE/view
